@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark p-3 bg-danger" id="headerNav">
+<nav class="navbar navbar-expand-lg navbar-dark  bg-danger" id="headerNav">
       <div class="container-fluid">
         <a class="navbar-brand d-block d-lg-none" href="index.php">
           <img src="Assets/Images/logo.png" height="80" />
