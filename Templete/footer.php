@@ -20,7 +20,7 @@
       © <script>
         document.write(new Date().getFullYear());
       </script> Copyright:
-      <a class="text-white" href="javascript:void(0);">MARUFA</a>
+      <a class="text-white" href="javascript:void(0);">The Library...</a>
     </div>
     <!-- Copyright -->
   </footer>

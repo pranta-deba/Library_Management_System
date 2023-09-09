@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Assets/Css/bootstrap.min.css">
-    <link rel="stylesheet" href="Assets/Css/owl.carousel.css">
-    <link rel="stylesheet" href="Assets/Css/owl.theme.css">
     <link rel="stylesheet" href="Assets/Css/style.css">
 </head>
 
@@ -21,10 +19,10 @@
     <div class="container p-3">
         <h2 class="text-center mb-3 text-uppercase">Please Login</h2>
         <div class="container mb-5">
-            <form class="row g-3 needs-validation" novalidate method="post" action="include/login.php">
+            <form class="row g-1 needs-validation" novalidate method="post" action="include/login.php">
 
                 <p class="text-center text-success"><?php echo $_GET['LogOK'] ?? ""; ?></p>
-                <p class="text-center text-danger"></p>
+                <p class="text-center text-danger"><?php echo $_GET['PassNotMatch'] ?? ""; ?></p>
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-5 col-sm-12">
@@ -42,15 +40,20 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-5 col-sm-12">
                         <label for="validationCustom03" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="validationCustom03" required>
+                        <input type="password" class="form-control" name="password" id="validationCucstom03" required>
                         <div class="invalid-feedback">
                             Please provide a valid password.
                         </div>
                     </div>
                 </div>
+                <div class="row d-flex justify-content-center mt-2">
+                    <div class="col-lg-5 col-sm-12">
+                        <input type="checkbox" onclick="showpass()"> Show Password
+                    </div>
+                </div>
 
                 <div class="col-12 text-center">
-                    <button class="btn btn-outline-danger text-uppercase" type="log_submit">Login</button>
+                    <button class="btn btn-outline-danger text-uppercase" type="submit" name="log_submit">Login</button>
                 </div>
                 <div class="text-center">
                     <p>Not a member? <a href="register.php">Register</a></p>
@@ -68,8 +71,8 @@
 
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>
     <script src="Assets/Js/bootstrap.bundle.min.js"></script>
-    <script src="Assets/Js/owl.carousel.js"></script>
     <script src="Assets/Js/bootstrapFormValidation.js"></script>
+    <script src="Assets/Js/passshowHide.js"></script>
 </body>
 
 </html>
