@@ -19,7 +19,8 @@ function validateNumberInput() {
     if (inputValue.length !== 11) {
         alert("Please enter a number with exactly 11 digits.");
         return false; // Prevent form submission
-    }else if (password != cpassword) {
+    };
+    if (password != cpassword) {
         alert("Password Not Match.");
         return false;
     }

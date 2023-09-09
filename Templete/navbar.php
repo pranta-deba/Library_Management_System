@@ -31,7 +31,7 @@
               <?= $_SESSION['firstname']; ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="profile.php?id=<?= $_SESSION['userid'] ?>">Profile</a></li>
+              <li><a class="dropdown-item" href="profile.php">Profile</a></li>
 
               <?php if ($_SESSION['role'] == "admin") { ?>
                 <li><a class="dropdown-item" href="Admin/index.php">Dashboard</a></li>

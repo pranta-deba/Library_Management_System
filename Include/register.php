@@ -25,7 +25,7 @@ if (isset($_POST['Submit_form'])) {
                 $resultt = $conn->query($selectt);
                 if ($resultt->num_rows > 0) {
                     echo "Username is already taken.";
-                    header("location:../register.php?ErrroMgs=Username is already taken, try again!&");
+                    header("location:../register.php?ErrroMgs=Username is already taken, try again!");
                 } else {
                     if ($email !== "") {
                         if ($password !== "" || $cpassword !== "") {
@@ -46,12 +46,13 @@ if (isset($_POST['Submit_form'])) {
                                                 '" . $dipartment . "',
                                                 '" . $semister . "',
                                                 '" . $roll . "',
+                                                null,
                                                 'students',
                                                 null)";
 
                                                 $conn->query($queary);
                                                 if ($conn->affected_rows) {
-                                                    header("Location: ../login.php?logUsers=$username&LogOK=Successfully.Now you can login");
+                                                    header("location: ../login.php?logUsers=$username&LogOK=Successfully.Now you can login");
                                                 };
 
                                                 

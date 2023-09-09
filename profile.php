@@ -3,24 +3,26 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 };
 // empty id
-if (empty($_GET['id'])) {
+if (empty($_SESSION['userid'])) {
     header("Location: index.php");
 }
 // get id
-if (isset($_GET['id'])) {
+if (isset($_SESSION['userid'])) {
+    //db conn
     require "Include/databaseConn.php";
-    $id = $_GET['id'];
-
+    $id = $_SESSION['userid'];
+    // select bd to id match
     $q = "SELECT * FROM users WHERE id='" . $id . "' limit 1";
     $r = $conn->query($q);
+    // id not match db
     if (!$r->num_rows) {
-        exit;
+        header("Location: index.php");
     }
     $row = $r->fetch_assoc();
     // var_dump($row);
-}else{
+} else {
     header("Location: index.php");
-}
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +34,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Assets/Css/bootstrap.min.css">
     <link rel="stylesheet" href="Assets/Css/style.css">
-  
+
 </head>
 
 <body>
@@ -62,13 +64,12 @@ if (isset($_GET['id'])) {
                                 <img src="Assets/Images/avatarusers.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4><?= $row['first-name'] ?> <?= $row['last-name'] ?></h4>
-                                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                    <p class="text-secondary mb-1"><?= $row['dipartment'] ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3">
@@ -79,7 +80,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">First Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth Valdez
+                                    <?= $row['first-name'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -88,7 +89,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Last Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth Valdez
+                                    <?= $row['last-name'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -97,7 +98,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">User Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth Valdez
+                                    <?= $row['username'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -106,7 +107,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    fip@jukmuh.al
+                                    <?= $row['email'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -115,7 +116,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (239) 816-9029
+                                    <?= $row['phone'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -124,7 +125,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Dipartment</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (320) 380-4539
+                                    <?= $row['dipartment'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -133,7 +134,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Semister</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Bay Area, San Francisco, CA
+                                    <?= $row['semister'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -142,13 +143,13 @@ if (isset($_GET['id'])) {
                                     <h6 class="mb-0">Roll No.</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Bay Area, San Francisco, CA
+                                    <?= $row['roll'] ?>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="btn btn-danger" target="__blank" href="">Edit</a>
+                                    <a class="btn btn-danger" href="Include/editprofile.php">Edit Profile</a>
                                 </div>
                             </div>
                         </div>
