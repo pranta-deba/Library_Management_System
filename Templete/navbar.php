@@ -8,7 +8,7 @@
         </button>
     
         <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mx-auto ">
+          <ul class="navbar-nav mx-auto text-uppercase">
             <li class="nav-item">
               <a class="nav-link mx-2 active" aria-current="page" href="index.php">Home</a>
             </li>

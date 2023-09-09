@@ -19,60 +19,92 @@
     <!-- navbar -->
 
     <div class="container p-3">
-        <h2 class="text-center mb-5">Please Registration</h2>
+        <h2 class="text-center mb-3 text-uppercase">Please Registration</h2>
         <div class="container mb-5">
-            <form class="row g-3 needs-validation" novalidate>
-                <div class="col-md-4">
+            <form class="row g-2 needs-validation" name="form1" novalidate method="post" action="include/register.php">
+
+                <p class="text-center text-danger"><?php echo $_GET['ErrroMgs'] ?? ""; ?></p>
+
+
+                <div class="col-md-6">
                     <label for="validationCustom01" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                    <input type="text" class="form-control" id="validationCustom01" name="firstname" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                    <input type="text" class="form-control" id="validationCustom02" name="lastname" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="col-md-6">
+                    <label for="validationCustomUsername" class="form-label">Username (Used letters & Number, Not allow spaces)</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                        <input type="text" class="form-control" id="validationCustomUsername11" aria-describedby="inputGroupPrepend" name="username" required>
                         <div class="invalid-feedback">
                             Please choose a username.
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">City</label>
-                    <input type="text" class="form-control" id="validationCustom03" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
+                    <label for="validationCustomUsername" class="form-label">Email Address</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="email" required>
+                        <div class="invalid-feedback">
+                            Please choose a email.
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="validationCustom04" class="form-label">State</label>
-                    <select class="form-select" id="validationCustom04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                    </select>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="validationCustomoo" required>
                     <div class="invalid-feedback">
-                        Please select a valid state.
+                        Please provide a valid password.
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="validationCustom05" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="validationCustom05" required>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Re-type Password</label>
+                    <input type="password" class="form-control" name="cpassword" id="validationCustom03tgh" required>
                     <div class="invalid-feedback">
-                        Please provide a valid zip.
+                        Please provide a valid password.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">11 Digit Mobile Number</label>
+                    <input type="number" class="form-control" name="phone" id="validation3Custom03" min="0" max="99999999999" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid phone.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Dipartment</label>
+                    <input type="text" class="form-control" name="dipartment" id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid Dipartment.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Semister</label>
+                    <input type="text" class="form-control" name="semister" id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid Semister.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">Roll No.</label>
+                    <input type="text" class="form-control" name="roll" id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid Roll No.
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <input class="form-check-input" type="checkbox" id="invalidCheck" required>
                         <label class="form-check-label" for="invalidCheck">
                             Agree to terms and conditions
                         </label>
@@ -81,8 +113,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <button class="btn btn-outline-danger" type="submit">Submit form</button>
+                <div class="col-12 text-center">
+                    <button class="btn btn-outline-danger text-uppercase" name="Submit_form" type="submit" onclick="validateNumberInput()">Submit form</button>
+                </div>
+                <div class="text-center">
+                    <p>You are member? <a href="login.php">Login</a></p>
                 </div>
             </form>
         </div>
@@ -96,22 +131,8 @@
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>
     <script src="Assets/Js/bootstrap.bundle.min.js"></script>
     <script src="Assets/Js/owl.carousel.js"></script>
-    <script>
-        (function() {
-            'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
+    <script src="Assets/Js/bootstrapFormValidation.js"></script>
+    <script src="Assets/Js/usernameNotAllowSpace.js"></script>
 </body>
 
 </html>
