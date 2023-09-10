@@ -7,9 +7,10 @@
 
         <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
         } else { ?>
-          <h5 class="text-center d-none d-md-block"><a href="login.php" class="text-uppercase font-weight-bolder text-decoration-none text-white px-5 text-center btn btn-outline-danger">Login</a></h5>
-        <?php }; ?> 
-        <h1 class="text-uppercase d-md-block display-2" style=" margin: 40px auto;
+          <h5 class="text-center d-none d-md-block"><a href="login.php" class="text-uppercase font-weight-bolder text-decoration-none text-white px-5 text-center btn btn-outline-danger">Login</a>
+          <?php }; ?>
+
+          <h1 class="text-uppercase d-md-block display-5" style=" margin: 40px auto;
               font-family: 'Ubuntu', sans-serif;
               font-weight: bold;
               color: #000;
@@ -22,6 +23,14 @@
                   0 14px 4px #565656,
                   0 17px 4px #343434,
                   0 20px 4px #171717;">The Library...</h1>
+          <div class="m-2 d-flex justify-content-center">
+
+            <form action="Include/searchbooks.php" method="get" class="d-flex">
+              <input class="form-control " type="search" name="books" placeholder="Search books ....">
+              <button type="submit" name="searchbooks" class="btn btn-danger">Search</button>
+            </form>
+
+          </div>
       </div>
     </div>
     <div class="carousel-item">

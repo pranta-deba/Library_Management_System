@@ -1,0 +1,9 @@
+CREATE TABLE Payment (  
+  id  int(10) PRIMARY KEY NOT NULL,  
+  writer_id int(10) NOT NULL,  
+  name varchar(128) NOT NULL,  
+  releases varchar(128) NOT NULL, 
+  image varchar(128) NOT NULL, 
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
+  FOREIGN KEY (writer_id) REFERENCES writers (id) ON DELETE CASCADE  
+);
