@@ -19,7 +19,6 @@ if (isset($_SESSION['userid'])) {
 };
 
 
-
 // update details
 if (isset($_POST['updateDetails'])) {
     //database conn
@@ -40,11 +39,10 @@ if (isset($_POST['updateDetails'])) {
                     if ($dipartment !== "") {
                         if ($semister !== "") {
                             if ($roll !== "") {
-
                                 $sql = "UPDATE users SET `id`='" . $id . "',`first-name`='" . $firstname . "',`last-name`='" . $lastname . "',`email`='" . $email . "',`phone`='" . $phone . "',`dipartment`='" . $dipartment . "',`semister`='" . $semister . "',`roll`='" . $roll . "' WHERE id='" . $id . "'";
                                 $conn->query($sql);
                                 if ($conn->affected_rows) {
-                                    header("location: ../profile.php");
+                                    header("location: ../profile.php?successfully=Profile has been successfully changed.");
                                 }
                             } else {
                                 $error = true;
@@ -74,7 +72,70 @@ if (isset($_POST['updateDetails'])) {
         $error = true;
         header("location: editprofile.php?ErrroMgs=Please choose a firstname!");
     };
-}
+};
+
+
+// update password
+if (isset($_POST['updatepass'])) {
+    //database conn
+    require "databaseConn.php";
+    $id = $_SESSION['userid'];
+    $oldpassword = $conn->escape_string($_POST['oldpassword']);
+    $newpassword = $conn->escape_string($_POST['newpassword']);
+    $renewpassword = $conn->escape_string($_POST['renewpassword']);
+
+    if ($oldpassword !== "") {
+        //old pass match
+        $q2 = "select * from users where id='" . $id . "' limit 1";
+        $r2 = $conn->query($q2);
+        if (!$r2->num_rows) {
+            header("location: ../profile.php");
+        }
+        $row2 = $r2->fetch_assoc();
+        if ($oldpassword === $row2['password']) {
+            if ($newpassword !== "" || $renewpassword !== "") {
+                if ($newpassword === $renewpassword) {
+                    $sql3 = "UPDATE users SET `id`='" . $id . "',`password`='" . $newpassword . "' WHERE id='" . $id . "'";
+                    $conn->query($sql3);
+                    if ($conn->affected_rows) {
+                        header("location: ../profile.php?successfully=Password has been successfully changed.");
+                    }
+                } else {
+                    echo '<script>alert("New password not match!");</script>';
+                }
+            } else {
+                echo '<script>alert("Valid Password box!");</script>';
+            }
+        } else {
+            echo '<script>alert("Old password not match");</script>';
+        };
+    };
+};
+
+
+// update profile
+if (isset($_POST['updateimg'])) {
+    //database conn
+    require "databaseConn.php";
+    $id = $_SESSION['userid'];
+    $image = null;
+
+    if (isset($_FILES['image'])) {
+        if (!file_exists($_FILES["image"]["tmp_name"])) {
+            echo '<script>alert("Choose image file to upload.!");</script>';
+        } else {
+            $image = uniqid() . ".png";
+            move_uploaded_file($_FILES['image']['tmp_name'], "../Assets/images/" . $image);
+        };
+    };
+    $sql4 = "UPDATE users SET `id`='" . $id . "',`image`='" . $image . "' WHERE id='" . $id . "'";
+    $conn->query($sql4);
+    if ($conn->affected_rows) {
+        header("location: ../profile.php?successfully=Image has been successfully Updated.");
+    }
+
+};
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,27 +258,27 @@ if (isset($_POST['updateDetails'])) {
                                 <form class="row g-2 needs-validation" name="form1" novalidate method="post">
                                     <div class="col-md-12">
                                         <label for="validationCustom03" class="form-label">Old Password</label>
-                                        <input type="password" class="form-control" name="password" id="validationCustomoo" required>
+                                        <input type="password" class="form-control" name="oldpassword" id="validationCustomoo" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid password.
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="validationCustom03" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" name="password" id="validationCustomoo" required>
+                                        <input type="password" class="form-control" name="newpassword" id="newpassword" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid password.
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="validationCustom03" class="form-label">Retype New Password</label>
-                                        <input type="password" class="form-control" name="password" id="validationCustomoo" required>
+                                        <input type="password" class="form-control" name="renewpassword" id="renewpassword" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid password.
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button class="btn btn-outline-danger text-uppercase m-4" name="updatepass" type="submit">Update</button>
+                                        <button class="btn btn-outline-danger text-uppercase m-4" name="updatepass" type="submit" id="paaassbtn">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -236,10 +297,10 @@ if (isset($_POST['updateDetails'])) {
                     <div class="card-body">
                         <div class="container p-3">
                             <div class="container mb-5">
-                                <form class="row g-2 needs-validation" name="form1" novalidate method="post">
+                                <form class="row g-2 needs-validation" name="form1" novalidate method="post" enctype="multipart/form-data">
                                     <div class="col-md-12">
                                         <label for="validationCustom03" class="form-label">Image</label>
-                                        <input type="file" class="form-control" name="images" id="validationCustomoo" required>
+                                        <input type="file" class="form-control" name="image" id="validationCustomoo" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid image.
                                         </div>
@@ -285,13 +346,33 @@ if (isset($_POST['updateDetails'])) {
                 $("#imgbtn").removeClass("active");
             });
             $("#imgbtn").click(function() {
-                $("#Passwords").hide();
+                $("#Profiles").hide();
                 $("#Passwords").hide();
                 $("#imagess").show();
                 $("#imgbtn").addClass("active");
                 $("#profilebtn").removeClass("active");
                 $("#passbtn").removeClass("active");
             });
+
+
+            //password match
+            $('#paaassbtn').click(function() {
+                var newpassword = $("#newpassword").val();
+                var renewpassword = $("#renewpassword").val();
+                if (newpassword != renewpassword) {
+                    alert("Password Not Match.");
+                    $("#Profiles").hide();
+                    $("#imagess").hide();
+                    $("#Passwords").show();
+                    $("#passbtn").addClass("active");
+                    $("#profilebtn").removeClass("active");
+                    $("#imgbtn").removeClass("active");
+                    return false;
+                }
+                return true;
+            });
+
+
         });
     </script>
 </body>

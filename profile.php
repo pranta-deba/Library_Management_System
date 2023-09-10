@@ -56,12 +56,13 @@ if (isset($_SESSION['userid'])) {
             </nav>
             <!-- /Breadcrumb -->
 
-            <div class="row gutters-sm m-4">
+            <div class="row gutters-sm m-2">
+                <p class="text-center text-success"><?= $_GET['successfully'] ?? ""; ?></p>
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="Assets/Images/avatarusers.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="Assets/Images/<?=$row['image']??"avatarusers.png"?>" alt="Admin" class="rounded-circle border border-4 border-danger" width="150" height="150">
                                 <div class="mt-3">
                                     <h4><?= $row['first-name'] ?> <?= $row['last-name'] ?></h4>
                                     <p class="text-secondary mb-1"><?= $row['dipartment'] ?></p>
