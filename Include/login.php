@@ -26,7 +26,6 @@ if (isset($_POST['log_submit'])) {
             $_SESSION['userid'] = $result['id'];
             $_SESSION['username'] = $result['username'];
             $_SESSION['firstname'] = $result['first-name'];
-            $_SESSION['roll'] = $result['roll'];
             $_SESSION['loggedin'] = true;
             $_SESSION['role'] = $result['role'];
             //admint students cheak

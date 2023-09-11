@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">writers name</h5>
                     <p class="card-text">Total Books</p>
-                    <a href="#" class="btn border border-danger">All Books..</a>
+                    <a href="#" class="btn text-decoration-underline">All Books..</a>
                 </div>
             </div>
             <div class="card p-2 m-2" style="width: 15rem;">

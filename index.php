@@ -21,16 +21,16 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
 
     <!-- navbar -->
-    <?php include "templete/navbar.php"; ?>
+    <?php include "Templete/navbar.php"; ?>
     <!-- navbar -->
     <!-- carousel -->
-    <?php include "templete/carousel.php"; ?>
+    <?php include "Templete/carousel.php"; ?>
     <!-- carousel -->
     <!-- owl carousel -->
-    <?php include "templete/owlcarousel.php"; ?>
+    <?php include "Templete/owlcarousel.php"; ?>
     <!-- owl carousel -->
     <!-- footer -->
-    <?php include "templete/footer.php"; ?>
+    <?php include "Templete/footer.php"; ?>
     <!-- footer -->
 
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>

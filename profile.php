@@ -40,7 +40,7 @@ if (isset($_SESSION['userid'])) {
 <body>
 
     <!-- navbar -->
-    <?php include "templete/navbar.php"; ?>
+    <?php include "Templete/navbar.php"; ?>
     <!-- navbar -->
 
     <!-- profile -->
@@ -163,7 +163,7 @@ if (isset($_SESSION['userid'])) {
     <!-- profile -->
 
     <!-- footer -->
-    <?php include "templete/footer.php"; ?>
+    <?php include "Templete/footer.php"; ?>
     <!-- footer -->
 
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>

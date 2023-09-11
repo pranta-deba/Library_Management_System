@@ -13,7 +13,7 @@
 <body>
 
     <!-- navbar -->
-    <?php include "templete/navbar.php"; ?>
+    <?php include "Templete/navbar.php"; ?>
     <!-- navbar -->
 
     <div class="container p-3">
@@ -65,7 +65,7 @@
 
     <!-- footer -->
     <div class="fixed-bottom">
-        <?php include "templete/footer.php"; ?>
+        <?php include "Templete/footer.php"; ?>
     </div>
     <!-- footer -->
 
