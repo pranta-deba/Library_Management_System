@@ -22,7 +22,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="access.php">Access</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="admin.php">Admin</a>
         </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle active" href="javascript:void(0);" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
