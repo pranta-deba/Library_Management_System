@@ -20,6 +20,6 @@ if (isset($_POST['Addbooks'])) {
     $insertQuery = "INSERT INTO books values(null,'" . $writer_id . "','" . $name . "','" . $releases . "','" . $description . "','" . $image . "',null)";
     $conn->query($insertQuery);
     if ($conn->affected_rows) {
-        header("Location: ../writers.php?abc=Insert Successfully.");
+        header("Location: ../books.php?abc=Insert Successfully.");
     };   
 };

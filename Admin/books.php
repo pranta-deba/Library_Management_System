@@ -22,7 +22,8 @@ $totalwriters = $totalresult->fetch_assoc();
     <?php include "Templete/navbar.php"; ?>
 
     <div class="text-center mt-3">
-        <button class="btn btn-danger" id="togglebox">Add Books</button>
+        <button class="btn btn-danger" id="togglebox1">Add Books</button>
+        <button class="btn btn-danger" id="togglebox2">Views Books</button>
     </div>
 
     <div class="text-center text-success mt-4 fw-bold"><?= $_GET['abc'] ?? "" ?></div>
@@ -30,40 +31,45 @@ $totalwriters = $totalresult->fetch_assoc();
     <div class="container" id="box1">
         <div class="row">
             <div class="col-lg-12 p-3">
-                <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Total Writers : <?= $totalwriters['total'] ?></h1>
+                <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Total Books : <?= $totalwriters['total'] ?></h1>
                 <hr />
             </div>
         </div>
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" style="width: 100%;height: 100%; overflow: scroll;">
 
-            <?php
-            $quary_1 = "SELECT * FROM writers WHERE  1";
-            $result_1 = $conn->query($quary_1);
+            <table class="table table-striped table-hover">
+                <thead class="table-danger">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Writer Id</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Insert Time</th>
+                        <th scope="col">Edit | Detele</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $quary_1 = "SELECT * FROM books WHERE  1";
+                    $result_1 = $conn->query($quary_1);
+                    while ($row = $result_1->fetch_assoc()) {
+                        echo '<tr>
+                        <th scope="row" class="table-danger">' . $row['id'] . '</th>
+                        <td class="table-secondary">' . $row['writer_id'] . '</td>
+                        <td>' . $row['name'] . '</td>
+                        <td>' . $row['releases'] . '</td>
+                        <td>' . $row['description'] . '</td>
+                        <td><img src="Assets/Images/'.$row['image'].'" alt="loading..." width="80px" height="80px"></td>
+                        <td>' . $row['created_at'] . '</td>
+                        <td><a href="Include/editbooks.php?booid=' . $row['id'] . '" class="btn text-primary">Edits</a> | <a href="Include/delete.php?booid=' . $row['id'] . '" onclick=\'return confirm("Are you sure want to delete this?");\' class="btn text-danger">Delete</a></td>
+                    </tr>';
+                    };
+                    ?>
+                </tbody>
+            </table>
 
-            $row = $result_1->fetch_assoc();
-            while ($row = $result_1->fetch_assoc()) {
-                echo '<div class="col-lg-3 col-md-4 col-sm-12 m-3">
-                <div class="card p-3" style="width: 100%; border: none; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; padding-top: 8px;">
-                    <div class="text-center">
-                        <img src="Assets/Images/' . $row['image'] . '" class="card-img-top" alt="Loading.." style=" width: 150px;height: 150px;overflow: hidden; border-radius: 50%;">
-                    </div>
-                    <div class="">
-                        <h5 class="card-title">' . $row['name'] . '</h5>
-
-                        <p class="card-text" style="border-bottom: 1px solid black;">Born : ' . $row['born'] . '</p>
-                        <p class="card-text" style="border-bottom: 1px solid black;">Died : ' . $row['died'] . '</p>
-                        <p class="card-text" style="border-bottom: 1px solid black;">Nationality : ' . $row['nationality'] . '</p>
-                        <p class="card-text" style="border-bottom: 1px solid black;">Total Books : ' . $row['total_books'] . '</p>
-                        <p class="card-text" style="border-bottom: 1px solid black;">Novels : ' . $row['novels'] . '</p>
-                    </div>
-                    <div class="text-center pt-3">
-                        <a href="Include/editWriters.php?wrid=' . $row['id'] . '" class="card-link btn btn-primary">Edits</a>
-                        <a href="Include/delete.php?wrid=' . $row['id'] . '" onclick=\'return confirm("Are you sure want to delete this?");\' class="card-link btn btn-danger">Delete</a>
-                    </div>
-                </div>
-            </div>';
-            };
-            ?>
         </div>
     </div>
     <!-- 1 -->
@@ -96,7 +102,7 @@ $totalwriters = $totalresult->fetch_assoc();
             </div>
 
             <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Name</label>
+                <label for="validationCustom02" class="form-label">Book Name</label>
                 <input type="text" class="form-control" name="name" id="validationCustom02" required>
                 <div class="valid-feedback">
                     Looks good!
@@ -153,12 +159,22 @@ $totalwriters = $totalresult->fetch_assoc();
     <script>
         $(document).ready(function() {
 
+            $("#togglebox1").show();
             $("#box1").show();
             $("#box2").hide();
+            $("#togglebox2").hide();
 
-            $("#togglebox").click(function() {
-                $("#box2").toggle();
-                $("#box1").toggle();
+            $("#togglebox1").click(function() {
+                $("#togglebox1").hide();
+                $("#togglebox2").show();
+                $("#box1").hide();
+                $("#box2").show();
+            });
+            $("#togglebox2").click(function() {
+                $("#togglebox2").hide();
+                $("#togglebox1").show();
+                $("#box2").hide();
+                $("#box1").show();
             });
         });
     </script>

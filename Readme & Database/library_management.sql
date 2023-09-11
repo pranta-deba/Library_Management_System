@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2023 at 08:05 PM
+-- Generation Time: Sep 11, 2023 at 11:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,8 +32,32 @@ CREATE TABLE `books` (
   `writer_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `releases` varchar(128) NOT NULL,
+  `description` varchar(512) NOT NULL,
   `image` varchar(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `writer_id`, `name`, `releases`, `description`, `image`, `created_at`) VALUES
+(1, 8, 'aaaaa', 'bbbbbb', 'cccccc', '64ff57e14ff10.png', '2023-09-11 21:49:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `surename` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `subject` varchar(128) NOT NULL,
+  `massage` varchar(512) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,6 +108,17 @@ CREATE TABLE `writers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `writers`
+--
+
+INSERT INTO `writers` (`id`, `name`, `born`, `died`, `nationality`, `total_books`, `novels`, `image`, `created_at`) VALUES
+(8, 'Rabindranath Tagore', '7 May 1861', '8 August 1941', 'Indian', '2132', '4', '64ff3bb571e39.png', '2023-09-11 16:09:25'),
+(9, 'Humayun Ahmed', '13 November 1948', '19 July 2012', 'Bangladesh', '768', '3', '64ff3c6c887f2.png', '2023-09-11 16:12:28'),
+(10, 'Kazi Nazrul Islam', '24 May 1899', '29 August 1976', 'Indian', '1256', '5', '64ff3cec1482f.png', '2023-09-11 16:14:36'),
+(11, 'Jagadish Gupta', '5 July 1886', '15 April 1957', 'Bangladesh', '1123', '2', '64ff3d56e519e.png', '2023-09-11 16:16:22'),
+(12, 'Bankim Chandra Chatterjee', '26 June 1838', '	8 April 1894', 'West Bengal', '981', '3', '64ff3db554bcd.png', '2023-09-11 16:17:57');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -93,6 +128,12 @@ CREATE TABLE `writers` (
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
   ADD KEY `writer_id` (`writer_id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -111,6 +152,18 @@ ALTER TABLE `writers`
 --
 
 --
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -120,7 +173,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `writers`
 --
 ALTER TABLE `writers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

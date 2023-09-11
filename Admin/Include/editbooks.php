@@ -2,30 +2,26 @@
 require "adminCheak.php";
 require "../../Include/databaseConn.php";
 
-if (isset($_GET['wrid'])) {
-    $id = $_GET['wrid'];
-    $p = "select * from writers where id='" . $id . "' limit 1";
+if (isset($_GET['booid'])) {
+    $id = $_GET['booid'];
+    $p = "select * from books where id='" . $id . "' limit 1";
     $r = $conn->query($p);
     $p = $r->fetch_assoc();
 }
-if (isset($_POST['UpdateWriter'])) {
+if (isset($_POST['upatebooks'])) {
     $id = $_POST['id'];
+    $writer_id = $_POST['writer_id'];
     $name = $conn->escape_string($_POST['name']);
-    $Born = $conn->escape_string($_POST['Born']);
-    $Died = $conn->escape_string($_POST['Died']);
-    $Nationality = $conn->escape_string($_POST['Nationality']);
-    $TotalBooks = $conn->escape_string($_POST['TotalBooks']);
-    $Novels = $conn->escape_string($_POST['Novels']);
-    $update = "UPDATE `writers` SET `id`='" . $id . "',
+    $releases = $conn->escape_string($_POST['releases']);
+    $description = $conn->escape_string($_POST['description']);
+    $update = "UPDATE `books` SET `id`='" . $id . "',
+    `writer_id`='" . $writer_id . "',
     `name`='" . $name . "',
-    `born`='" . $Born . "',
-    `died`='" . $Died . "',
-    `nationality`='" . $Nationality . "',
-    `total_books`='" . $TotalBooks . "',
-    `novels`='" . $Novels . "' WHERE id='" . $id . "'";
+    `releases`='" . $releases . "',
+    `description`='" . $description . "' WHERE id='" . $id . "'";
     $conn->query($update);
     if ($conn->affected_rows) {
-        header("location: ../writers.php?abc=Edit Successfully.");
+        header("location: ../books.php?abc=Edit Successfully.");
     };
 };
 ?>
@@ -94,52 +90,43 @@ if (isset($_POST['UpdateWriter'])) {
             </div>
         </div>
         <form class="row g-3 needs-validation" novalidate method="post">
-
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Name</label>
-                <input type="text" value="<?= $p['id'] ?>" name="id" hidden>
-                <input type="text" class="form-control" value="<?= $p['name'] ?>" name="name" id="validationCustom01" required>
+            <input type="text" value="<?= $p['id'] ?>" name="id" hidden>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Writer Select</label>
+                <select class="form-control" name="writer_id" id="validationCustom01" required>
+                    <option></option>
+                    <?php
+                    $selectwriter = "select id,name from writers where 1";
+                    $runquary = $conn->query($selectwriter);
+                    while ($writerData = $runquary->fetch_assoc()) {
+                        echo '<option value="'.$writerData['id'].'">'.$writerData['name'].'</option>';
+                    }
+                    ?>
+                </select>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Born</label>
-                <input type="text" class="form-control" value="<?= $p['born'] ?>" name="Born" id="validationCustom02" required>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Book Name</label>
+                <input type="text" class="form-control" value="<?= $p['name'] ?>" name="name" id="validationCustom02" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Died</label>
-                <input type="text" class="form-control" value="<?= $p['died'] ?>" name="Died" id="validationCustom02" required>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Release Date</label>
+                <input type="text" class="form-control" value="<?= $p['releases'] ?>" name="releases" id="validationCustom02" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Nationality</label>
-                <input type="text" class="form-control" value="<?= $p['nationality'] ?>" name="Nationality" id="validationCustom02" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Total Books</label>
-                <input type="number" class="form-control" value="<?= $p['total_books'] ?>" name="TotalBooks" id="validationCustom02" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Novels</label>
-                <input type="number" class="form-control" value="<?= $p['novels'] ?>" name="Novels" id="validationCustom02" required>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="validationCustom02" required><?= $p['description'] ?></textarea>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -157,8 +144,10 @@ if (isset($_POST['UpdateWriter'])) {
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit" name="UpdateWriter">Update Writer</button>
+                <button class="btn btn-primary" type="submit" name="upatebooks">Update Books</button>
             </div>
+
+
         </form>
     </div>
     <!-- 2 -->
