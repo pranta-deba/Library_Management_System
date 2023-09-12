@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 };
-
+require "Include/databaseConn.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

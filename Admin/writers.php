@@ -20,7 +20,9 @@ $totalwriters = $totalresult->fetch_assoc();
 <body>
 
     <?php include "Templete/navbar.php"; ?>
-
+    <div class="ms-5 mt-2">
+        <a class="btn" href="index.php">Dashboard</a>/<a class="btn" href="writers.php">Writers</a>
+    </div>
     <div class="text-center mt-3">
         <button class="btn btn-danger" id="togglebox1">Add Writers</button>
         <button class="btn btn-danger" id="togglebox2">Views Writers</button>

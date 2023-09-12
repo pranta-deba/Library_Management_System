@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 11:59 PM
+-- Generation Time: Sep 12, 2023 at 05:02 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,10 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `writer_id`, `name`, `releases`, `description`, `image`, `created_at`) VALUES
-(1, 8, 'aaaaa', 'bbbbbb', 'cccccc', '64ff57e14ff10.png', '2023-09-11 21:49:16');
+(6, 8, 'Korunna (or Karuna)', '1877-1878', 'We know you are a human but unfortunately our system does not satisfy. So please late us a moment to verify using the captcha code below for download Karuna.', '6500777d416d3.png', '2023-09-12 14:36:45'),
+(7, 9, 'Himu', '1990', 'The real name of the character is Himalay, a name given by his father. He follows a lifestyle that was instructed by his psychopathic father who wanted him to be a great man.', '65007822ec3d1.png', '2023-09-12 14:39:30'),
+(8, 10, 'Bulbul (1st Part)', '1928', 'Nazrul Islam studied up to grade 10 but did not appear for the matriculation pre-test examination; instead in 1917, he joined the British Indian Army at the age of eighteen.', '6500795a75fb1.png', '2023-09-12 14:44:42'),
+(9, 11, 'Yugma', '1973', 'Gupta\'s stories had been published in periodicals like Bharati, Bijoli, Uttara, Kali-Kalam and Kallol. His first novel Asadhu Siddhartha was published in 1928.', '650079dd08018.png', '2023-09-12 14:46:53');
 
 -- --------------------------------------------------------
 
@@ -112,11 +115,11 @@ CREATE TABLE `writers` (
 --
 
 INSERT INTO `writers` (`id`, `name`, `born`, `died`, `nationality`, `total_books`, `novels`, `image`, `created_at`) VALUES
-(8, 'Rabindranath Tagore', '7 May 1861', '8 August 1941', 'Indian', '2132', '4', '64ff3bb571e39.png', '2023-09-11 16:09:25'),
-(9, 'Humayun Ahmed', '13 November 1948', '19 July 2012', 'Bangladesh', '768', '3', '64ff3c6c887f2.png', '2023-09-11 16:12:28'),
-(10, 'Kazi Nazrul Islam', '24 May 1899', '29 August 1976', 'Indian', '1256', '5', '64ff3cec1482f.png', '2023-09-11 16:14:36'),
-(11, 'Jagadish Gupta', '5 July 1886', '15 April 1957', 'Bangladesh', '1123', '2', '64ff3d56e519e.png', '2023-09-11 16:16:22'),
-(12, 'Bankim Chandra Chatterjee', '26 June 1838', '	8 April 1894', 'West Bengal', '981', '3', '64ff3db554bcd.png', '2023-09-11 16:17:57');
+(8, 'Rabindranath Tagore', '7 May 1861', '8 August 1941', 'Indian', '1', '4', '64ff3bb571e39.png', '2023-09-11 16:09:25'),
+(9, 'Humayun Ahmed', '13 November 1948', '19 July 2012', 'Bangladesh', '3', '3', '64ff3c6c887f2.png', '2023-09-11 16:12:28'),
+(10, 'Kazi Nazrul Islam', '24 May 1899', '29 August 1976', 'Indian', '1', '5', '64ff3cec1482f.png', '2023-09-11 16:14:36'),
+(11, 'Jagadish Gupta', '5 July 1886', '15 April 1957', 'Bangladesh', '4', '2', '64ff3d56e519e.png', '2023-09-11 16:16:22'),
+(12, 'Bankim Chandra Chatterjee', '26 June 1838', '	8 April 1894', 'West Bengal', '1', '3', '64ff3db554bcd.png', '2023-09-11 16:17:57');
 
 --
 -- Indexes for dumped tables
@@ -155,19 +158,19 @@ ALTER TABLE `writers`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `writers`

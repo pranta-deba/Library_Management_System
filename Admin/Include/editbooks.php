@@ -55,7 +55,7 @@ if (isset($_POST['upatebooks'])) {
                         <a class="nav-link mx-2 active" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="../message.php">Message</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="../contacts.php">Message</a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
                         <a class="nav-link mx-2" href="../index.php">
@@ -71,6 +71,7 @@ if (isset($_POST['upatebooks'])) {
                             <?= $_SESSION['firstname']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../../index.php">Go Site</a></li>
                             <li><a class="dropdown-item" href="../../profile.php">Profile</a></li>
                             <li><a class="dropdown-item" href="../../include/logout.php">Logout</a></li>
                         </ul>

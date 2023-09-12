@@ -1,6 +1,15 @@
 <?php
 require "Include/adminCheak.php";
-
+require "../Include/databaseConn.php";
+$total1 = "select count(*) as total from writers where 1";
+$totalresult1 = $conn->query($total1);
+$totalwriters = $totalresult1->fetch_assoc();
+$total2 = "select count(*) as total from books where 1";
+$totalresult2 = $conn->query($total2);
+$totalbooks = $totalresult2->fetch_assoc();
+$total3 = "select count(*) as total from users where role='students'";
+$totalresult3 = $conn->query($total3);
+$totalusers = $totalresult3->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +30,8 @@ require "Include/adminCheak.php";
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 p-5">
-        <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</h1>
+      <div class="col-lg-12 p-3">
+        <h1><i class="bi bi-chevron-right"></i><a class="text-decoration-none text-dark" href="../index.php">Site</a> / <a class="text-decoration-none text-dark" href="index.php">Dashboard</a></h1>
         <hr />
       </div>
     </div>
@@ -33,7 +42,7 @@ require "Include/adminCheak.php";
             <div class="card-body">
               <i class="bi bi-pencil-square display-3"></i>
               <hr />
-              <p class="card-title lead text-danger fw-bold">Writers : 34</p>
+              <p class="card-title lead text-danger fw-bold">Writers : <?= $totalwriters['total'] ?></p>
             </div>
           </div>
         </a>
@@ -45,19 +54,19 @@ require "Include/adminCheak.php";
             <div class="card-body">
               <i class="bi bi-book display-3"></i>
               <hr />
-              <p class="card-title lead text-danger fw-bold">Books : </p>
+              <p class="card-title lead text-danger fw-bold">Books : <?= $totalbooks['total'] ?></p>
             </div>
           </div>
         </a>
       </div>
 
       <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
-        <a class="text-decoration-none" href="#">
+        <a class="text-decoration-none" href="users.php">
           <div class="card p-3 shadow bg-purple text-center border-0">
             <div class="card-body">
               <i class="bi bi-people display-3"></i>
               <hr />
-              <p class="card-title lead text-danger fw-bold">Users : </p>
+              <p class="card-title lead text-danger fw-bold">Users : <?= $totalusers['total'] ?></p>
             </div>
           </div>
         </a>

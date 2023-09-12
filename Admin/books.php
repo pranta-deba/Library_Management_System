@@ -3,7 +3,7 @@ require "Include/adminCheak.php";
 require "../Include/databaseConn.php";
 $total = "select count(*) as total from books where 1";
 $totalresult = $conn->query($total);
-$totalwriters = $totalresult->fetch_assoc();
+$totalbooks = $totalresult->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,9 @@ $totalwriters = $totalresult->fetch_assoc();
 <body>
 
     <?php include "Templete/navbar.php"; ?>
-
+    <div class="ms-5 mt-2">
+        <a class="btn" href="index.php">Dashboard</a>/<a class="btn" href="books.php">Books</a>
+    </div>
     <div class="text-center mt-3">
         <button class="btn btn-danger" id="togglebox1">Add Books</button>
         <button class="btn btn-danger" id="togglebox2">Views Books</button>
@@ -31,7 +33,7 @@ $totalwriters = $totalresult->fetch_assoc();
     <div class="container" id="box1">
         <div class="row">
             <div class="col-lg-12 p-3">
-                <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Total Books : <?= $totalwriters['total'] ?></h1>
+                <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Total Books : <?= $totalbooks['total'] ?></h1>
                 <hr />
             </div>
         </div>
