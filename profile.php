@@ -51,46 +51,37 @@ if (isset($_SESSION['userid'])) {
             <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none text-danger">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= $row['first-name'] ?>'s Profile</li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $row['username'] ?>'s Profile</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
 
             <div class="row gutters-sm m-2">
                 <p class="text-center text-success"><?= $_GET['successfully'] ?? ""; ?></p>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="Assets/Images/<?=$row['image']??"avatarusers.png"?>" alt="Admin" class="rounded-circle border border-4 border-danger" width="150" height="150">
                                 <div class="mt-3">
-                                    <h4><?= $row['first-name'] ?> <?= $row['last-name'] ?></h4>
-                                    <p class="text-secondary mb-1"><?= $row['dipartment'] ?></p>
+                                    <h4><?= $row['fullname'] ?></h4>
+                                    <p class="text-secondary mb-1"><?= $row['phone'] ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card mb-3">
                         <div class="card-body">
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">First Name</h6>
+                                    <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <?= $row['first-name'] ?>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Last Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <?= $row['last-name'] ?>
+                                    <?= $row['fullname'] ?>
                                 </div>
                             </div>
                             <hr>
@@ -121,33 +112,7 @@ if (isset($_SESSION['userid'])) {
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Dipartment</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <?= $row['dipartment'] ?>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Semister</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <?= $row['semister'] ?>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Roll No.</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <?= $row['roll'] ?>
-                                </div>
-                            </div>
-                            <hr>
+                            
                             <div class="row">
                                 <div class="col-sm-12">
                                     <a class="btn btn-danger" href="Include/editprofile.php">Edit Profile</a>

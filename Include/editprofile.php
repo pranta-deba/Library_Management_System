@@ -24,49 +24,38 @@ if (isset($_POST['updateDetails'])) {
     //database conn
     require "databaseConn.php";
     $id = $_SESSION['userid'];
-    $firstname = $conn->escape_string($_POST['firstname']);
-    $lastname = $conn->escape_string($_POST['lastname']);
+    $fullname = $conn->escape_string($_POST['fullname']);
+    $username = $conn->escape_string($_POST['username']);
     $email = $conn->escape_string($_POST['email']);
     $phone = $_POST['phone'];
-    $dipartment = $conn->escape_string($_POST['dipartment']);
-    $semister = $conn->escape_string($_POST['semister']);
-    $roll = $_POST['roll'];
     $error = false;
-    if ($firstname !== "") {
-        if ($lastname !== "") {
-            if ($email !== "") {
-                if ($phone !== "") {
-                    if ($dipartment !== "") {
-                        if ($semister !== "") {
-                            if ($roll !== "") {
-                                $sql = "UPDATE users SET `id`='" . $id . "',`first-name`='" . $firstname . "',`last-name`='" . $lastname . "',`email`='" . $email . "',`phone`='" . $phone . "',`dipartment`='" . $dipartment . "',`semister`='" . $semister . "',`roll`='" . $roll . "' WHERE id='" . $id . "'";
-                                $conn->query($sql);
-                                if ($conn->affected_rows) {
-                                    header("location: ../profile.php?successfully=Profile has been successfully changed.");
-                                }
-                            } else {
-                                $error = true;
-                                header("location: editprofile.php?ErrroMgs=Please choose a roll!");
-                            };
-                        } else {
-                            $error = true;
-                            header("location: editprofile.php?ErrroMgs=Please choose a semister!");
-                        };
+    if ($fullname !== "") {
+        if ($username !== "") {
+            //usersname already exits cheak database
+            $selectttt = "SELECT * FROM users WHERE username = '$username'";
+            $resultttt = $conn->query($selectttt);
+            if ($resultttt->num_rows > 0) {
+                echo "<script>alert('Username is already taken. please try another username');</script>";
+            } else {
+                if ($email !== "") {
+                    if ($phone !== "") {
+                        $sql = "UPDATE users SET `id`='" . $id . "',`fullname`='" . $fullname . "',`username`='" . $username . "',`email`='" . $email . "',`phone`='" . $phone . "' WHERE id='" . $id . "'";
+                        $conn->query($sql);
+                        if ($conn->affected_rows) {
+                            header("location: ../profile.php?successfully=Profile has been successfully changed.");
+                        }
                     } else {
                         $error = true;
-                        header("location: editprofile.php?ErrroMgs=Please choose a dipartment!");
+                        header("location: editprofile.php?ErrroMgs=Please choose a phone!");
                     };
                 } else {
                     $error = true;
-                    header("location: editprofile.php?ErrroMgs=Please choose a phone!");
+                    header("location: editprofile.php?ErrroMgs=Please choose a email!");
                 };
-            } else {
-                $error = true;
-                header("location: editprofile.php?ErrroMgs=Please choose a email!");
             };
         } else {
             $error = true;
-            header("location: editprofile.php?ErrroMgs=Please choose a lastname!");
+            header("location: editprofile.php?ErrroMgs=Please choose a username!");
         };
     } else {
         $error = true;
@@ -133,7 +122,6 @@ if (isset($_POST['updateimg'])) {
     if ($conn->affected_rows) {
         header("location: ../profile.php?successfully=Image has been successfully Updated.");
     }
-
 };
 
 ?>
@@ -172,16 +160,16 @@ if (isset($_POST['updateimg'])) {
                                 <form class="row g-2 needs-validation" name="form1" novalidate method="post">
 
                                     <p class="text-center text-danger"><?php echo $_GET['ErrroMgs'] ?? ""; ?></p>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label for="validationCustom01" class="form-label">First name</label>
-                                        <input type="text" class="form-control" value="<?= $row['first-name'] ?>" id="validationCustom01" name="firstname" required>
+                                        <input type="text" class="form-control" value="<?= $row['fullname'] ?>" id="validationCustom01" name="fullname" required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="validationCustom02" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" value="<?= $row['last-name'] ?>" id="validationCustom02" name="lastname" required>
+                                    <div class="col-md-12">
+                                        <label for="validationCustom01" class="form-label">User name</label>
+                                        <input type="text" class="form-control" value="<?= $row['username'] ?>" id="validationCustom01" name="username" required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
@@ -196,32 +184,11 @@ if (isset($_POST['updateimg'])) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label for="validationCustom03" class="form-label">11 Digit Mobile Number</label>
                                         <input type="number" class="form-control" name="phone" id="validation3Custom03" min="0" max="99999999999" value="<?= $row['phone'] ?>" required>
                                         <div class="invalid-feedback">
                                             Please provide a valid phone.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="validationCustom03" class="form-label">Dipartment</label>
-                                        <input type="text" class="form-control" value="<?= $row['dipartment'] ?>" name="dipartment" id="validationCustom03" required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid Dipartment.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="validationCustom03" class="form-label">Semister</label>
-                                        <input type="text" class="form-control" name="semister" id="validationCustom03" value="<?= $row['semister'] ?>" required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid Semister.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="validationCustom03" class="form-label">Roll No.</label>
-                                        <input type="text" class="form-control" value="<?= $row['roll'] ?>" name="roll" id="validationCustom03" required>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid Roll No.
                                         </div>
                                     </div>
                                     <div class="col-12">

@@ -50,6 +50,7 @@ $totalwriters = $totalresult->fetch_assoc();
                     </div>
                     <div class="">
                         <h5 class="card-title text-center">' . $row['name'] . '</h5>
+                        <p class="card-text" style="border-bottom: 1px solid black;">Id : ' . $row['id'] . '</p>
                         <p class="card-text" style="border-bottom: 1px solid black;">Born : ' . $row['born'] . '</p>
                         <p class="card-text" style="border-bottom: 1px solid black;">Died : ' . $row['died'] . '</p>
                         <p class="card-text" style="border-bottom: 1px solid black;">Nationality : ' . $row['nationality'] . '</p>

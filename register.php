@@ -18,27 +18,18 @@
 
     <div class="container p-3">
         <h2 class="text-center mb-3 text-uppercase">Please Registration</h2>
-        <div class="container mb-5">
-            <form class="row g-2 needs-validation" name="form1" novalidate method="post" action="include/register.php">
+        <div class="container mb-5  d-flex justify-content-center">
+            <form class="row g-2 needs-validation" style="width: 70%;" name="form1" novalidate method="post" action="include/register.php">
 
                 <p class="text-center text-danger"><?php echo $_GET['ErrroMgs'] ?? ""; ?></p>
-
-
-                <div class="col-md-6">
-                    <label for="validationCustom01" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="validationCustom01" name="firstname" required>
+                <div class="col-md-12">
+                    <label for="validationCustom01" class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="validationCustom01" name="fulltname" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="lastname" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="validationCustomUsername" class="form-label">Username (Used letters & Number, Not allow spaces)</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -48,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="validationCustomUsername" class="form-label">Email Address</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -58,46 +49,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="validationCustomoo" required>
                     <div class="invalid-feedback">
                         Please provide a valid password.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">Re-type Password</label>
                     <input type="password" class="form-control" name="cpassword" id="validationCustom03tgh" required>
                     <div class="invalid-feedback">
                         Please provide a valid password.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">11 Digit Mobile Number</label>
                     <input type="number" class="form-control" name="phone" id="validation3Custom03" min="0" max="99999999999" required>
                     <div class="invalid-feedback">
                         Please provide a valid phone.
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">Dipartment</label>
-                    <input type="text" class="form-control" name="dipartment" id="validationCustom03" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid Dipartment.
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">Semister</label>
-                    <input type="text" class="form-control" name="semister" id="validationCustom03" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid Semister.
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">Roll No.</label>
-                    <input type="text" class="form-control" name="roll" id="validationCustom03" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid Roll No.
                     </div>
                 </div>
                 <div class="col-12">
