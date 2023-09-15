@@ -20,6 +20,7 @@ $totaladmin = $totalresult->fetch_assoc();
 <body>
 
     <?php include "Templete/navbar.php"; ?>
+    
     <div class="ms-5 mt-2">
         <a class="btn" href="index.php">Dashboard</a>/<a class="btn" href="admin.php">Admin</a>
     </div>
@@ -38,14 +39,10 @@ $totaladmin = $totalresult->fetch_assoc();
                 <thead class="table-danger">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
+                        <th scope="col">Full Name</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Dipaerment</th>
-                        <th scope="col">Semister</th>
-                        <th scope="col">Roll</th>
                         <th scope="col">Images</th>
                         <th scope="col">Role</th>
                         <th scope="col">Insert Time</th>
@@ -54,19 +51,15 @@ $totaladmin = $totalresult->fetch_assoc();
                 </thead>
                 <tbody>
                     <?php
-                    $quary_1 = "select * from users where  role='admin'";
+                    $quary_1 = "select * from users where  role='admin' order by created_time desc";
                     $result_1 = $conn->query($quary_1);
                     while ($row = $result_1->fetch_assoc()) {
                         echo '<tr>
                         <th scope="row" class="table-danger">' . $row['id'] . '</th>
-                        <td class="table-secondary">' . $row['first-name'] . '</td>
-                        <td>' . $row['last-name'] . '</td>
+                        <td class="table-secondary">' . $row['fullname'] . '</td>
                         <td>' . $row['username'] . '</td>
                         <td>' . $row['email'] . '</td>
                         <td>' . $row['phone'] . '</td>
-                        <td>' . $row['dipartment'] . '</td>
-                        <td>' . $row['semister'] . '</td>
-                        <td>' . $row['roll'] . '</td>
                         <td><img src="../Assets/Images/'.$row['image'].'" alt="loading..." width="80px" height="80px"></td>
                         <td>' . $row['role'] . '</td>
                         <td>' . $row['created_time'] . '</td>

@@ -40,7 +40,7 @@ $totalwriters = $totalresult->fetch_assoc();
         <div class="row d-flex justify-content-center">
 
             <?php
-            $quary_1 = "SELECT * FROM writers WHERE  1";
+            $quary_1 = "SELECT * FROM writers WHERE  1 order by created_at desc";
             $result_1 = $conn->query($quary_1);
             while ($row = $result_1->fetch_assoc()) {
                 echo '<div class="col-lg-3 col-md-4 col-sm-12 m-3"><a href="" class="text-decoration-none text-dark">

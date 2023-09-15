@@ -49,7 +49,7 @@ $totalmgs = $totalresult->fetch_assoc();
                 </thead>
                 <tbody>
                     <?php
-                    $quary_1 = "select * from contacts where 1";
+                    $quary_1 = "select * from contacts where 1 order by created_at desc";
                     $result_1 = $conn->query($quary_1);
                     while ($row = $result_1->fetch_assoc()) {
                         echo '<tr>

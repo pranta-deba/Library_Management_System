@@ -8,7 +8,7 @@
 
         <!-- all writer loop -->
         <?php
-        $quary_1 = "select * from writers where 1";
+        $quary_1 = "select * from writers where 1 order by created_at desc";
         $result_1 = $conn->query($quary_1);
         while ($row = $result_1->fetch_assoc()) {
             echo '<div class="card p-2 m-2" style="width: 15rem;">
@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h5 class="card-title">' . $row['name'] . '</h5>
                 <p class="card-text">Stoke : ' . $row['total_books'] . '</p>
-                <a href="#" class="btn text-decoration-underline">All Books..</a>
+                <a href="writerBook.php?writerid=' . $row['id'] . '" class="btn text-decoration-underline">All Books..</a>
             </div>
         </div>';
         };

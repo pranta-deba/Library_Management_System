@@ -54,7 +54,7 @@ $totalbooks = $totalresult->fetch_assoc();
                 </thead>
                 <tbody>
                     <?php
-                    $quary_1 = "SELECT * FROM books WHERE  1";
+                    $quary_1 = "SELECT * FROM books WHERE  1 order by created_at desc";
                     $result_1 = $conn->query($quary_1);
                     while ($row = $result_1->fetch_assoc()) {
                         echo '<tr>

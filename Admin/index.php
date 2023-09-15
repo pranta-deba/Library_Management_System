@@ -31,7 +31,7 @@ $totalusers = $totalresult3->fetch_assoc();
   <div class="container">
     <div class="row">
       <div class="col-lg-12 p-3">
-        <h1><i class="bi bi-chevron-right"></i><a class="text-decoration-none text-dark" href="../index.php">Site</a> / <a class="text-decoration-none text-dark" href="index.php">Dashboard</a></h1>
+        <h1><i class="bi bi-chevron-right"></i>Dashboard</h1>
         <hr />
       </div>
     </div>

@@ -25,37 +25,24 @@ if (isset($_POST['updateDetails'])) {
     require "databaseConn.php";
     $id = $_SESSION['userid'];
     $fullname = $conn->escape_string($_POST['fullname']);
-    $username = $conn->escape_string($_POST['username']);
     $email = $conn->escape_string($_POST['email']);
     $phone = $_POST['phone'];
     $error = false;
     if ($fullname !== "") {
-        if ($username !== "") {
-            //usersname already exits cheak database
-            $selectttt = "SELECT * FROM users WHERE username = '$username'";
-            $resultttt = $conn->query($selectttt);
-            if ($resultttt->num_rows > 0) {
-                echo "<script>alert('Username is already taken. please try another username');</script>";
+        if ($email !== "") {
+            if ($phone !== "") {
+                $sql = "UPDATE users SET `id`='" . $id . "',`fullname`='" . $fullname . "',`email`='" . $email . "',`phone`='" . $phone . "' WHERE id='" . $id . "'";
+                $conn->query($sql);
+                if ($conn->affected_rows) {
+                    header("location: ../profile.php?successfully=Profile has been successfully changed.");
+                }
             } else {
-                if ($email !== "") {
-                    if ($phone !== "") {
-                        $sql = "UPDATE users SET `id`='" . $id . "',`fullname`='" . $fullname . "',`username`='" . $username . "',`email`='" . $email . "',`phone`='" . $phone . "' WHERE id='" . $id . "'";
-                        $conn->query($sql);
-                        if ($conn->affected_rows) {
-                            header("location: ../profile.php?successfully=Profile has been successfully changed.");
-                        }
-                    } else {
-                        $error = true;
-                        header("location: editprofile.php?ErrroMgs=Please choose a phone!");
-                    };
-                } else {
-                    $error = true;
-                    header("location: editprofile.php?ErrroMgs=Please choose a email!");
-                };
+                $error = true;
+                header("location: editprofile.php?ErrroMgs=Please choose a phone!");
             };
         } else {
             $error = true;
-            header("location: editprofile.php?ErrroMgs=Please choose a username!");
+            header("location: editprofile.php?ErrroMgs=Please choose a email!");
         };
     } else {
         $error = true;
@@ -141,6 +128,7 @@ if (isset($_POST['updateimg'])) {
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
         <nav class="nav nav-borders">
+            <a class="nav-link ms-0" href="../index.php" style="cursor:pointer;">Home</a>
             <a class="nav-link active ms-0" id="profilebtn" style="cursor:pointer;">Profile</a>
             <a class="nav-link" id="passbtn" style="cursor:pointer;">Password</a>
             <a class="nav-link" id="imgbtn" style="cursor:pointer;">Image Upload</a>
@@ -163,13 +151,6 @@ if (isset($_POST['updateimg'])) {
                                     <div class="col-md-12">
                                         <label for="validationCustom01" class="form-label">First name</label>
                                         <input type="text" class="form-control" value="<?= $row['fullname'] ?>" id="validationCustom01" name="fullname" required>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="validationCustom01" class="form-label">User name</label>
-                                        <input type="text" class="form-control" value="<?= $row['username'] ?>" id="validationCustom01" name="username" required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>

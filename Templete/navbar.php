@@ -18,9 +18,9 @@
           <a class="nav-link active text-white text-uppercase" href="about.php">About</a>
         </li>
         <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] && $_SESSION['role'] == "admin") { ?>
-        <li class="nav-item">
-          <a class="nav-link active text-white text-uppercase" href="Admin/index.php">dashboard</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white text-uppercase" href="Admin/index.php">dashboard</a>
+          </li>
         <?php }; ?>
       </ul>
 
@@ -31,19 +31,26 @@
 
       <ul class="navbar-nav mb-2 mb-lg-0">
 
-      <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) { ?>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white text-uppercase" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <?= $_SESSION['username']; ?>
-          </a>
-          <ul class="dropdown-menu bg-danger border border-dark" aria-labelledby="navbarDropdown">
-            <li class="bg-danger"><a class="dropdown-item active text-white bg-danger text-uppercase" href="profile.php">Profile</a></li>
-            <li class="bg-danger"><a class="dropdown-item active text-white bg-danger text-uppercase" href="include/logout.php">Logout</a></li>
-          </ul>
-        </li>
+        <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {?>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="javascript:void(0);" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?= $_SESSION['username']; ?>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end bg-danger border border-dark" aria-labelledby="navbarDropdown">
+              <li class="bg-danger"><a class="dropdown-item active text-white bg-danger text-uppercase" href="profile.php">Profile</a></li>
+              <li class="bg-danger"><a class="dropdown-item active text-white bg-danger text-uppercase" href="include/logout.php">Logout</a></li>
+            </ul>
+          </li>
+
+
+
+
+          
         <?php } else { ?>
-        <li class="nav-item m-2"><a class="dropdown-item active text-white text-uppercase" href="login.php">Login</a></li>
-        <li class="nav-item m-2"><a class="dropdown-item active text-white text-uppercase" href="register.php">Registration</a></li>
+          <li class="nav-item m-2"><a class="dropdown-item active text-white text-uppercase" href="login.php">Login</a></li>
+          <li class="nav-item m-2"><a class="dropdown-item active text-white text-uppercase" href="register.php">Registration</a></li>
         <?php }; ?>
       </ul>
     </div>

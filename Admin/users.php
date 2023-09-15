@@ -37,15 +37,11 @@ $totalusers = $totalresult->fetch_assoc();
             <table class="table table-striped table-hover">
                 <thead class="table-danger">
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
+                    <th scope="col">Id</th>
+                        <th scope="col">Full Name</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Dipaerment</th>
-                        <th scope="col">Semister</th>
-                        <th scope="col">Roll</th>
                         <th scope="col">Images</th>
                         <th scope="col">Role</th>
                         <th scope="col">Insert Time</th>
@@ -54,20 +50,16 @@ $totalusers = $totalresult->fetch_assoc();
                 </thead>
                 <tbody>
                     <?php
-                    $quary_1 = "select * from users where  role='students'";
+                    $quary_1 = "select * from users where  role='students' order by created_time desc";
                     $result_1 = $conn->query($quary_1);
                     while ($row = $result_1->fetch_assoc()) {
                         echo '<tr>
                         <th scope="row" class="table-danger">' . $row['id'] . '</th>
-                        <td class="table-secondary">' . $row['first-name'] . '</td>
-                        <td>' . $row['last-name'] . '</td>
+                        <td class="table-secondary">' . $row['fullname'] . '</td>
                         <td>' . $row['username'] . '</td>
                         <td>' . $row['email'] . '</td>
                         <td>' . $row['phone'] . '</td>
-                        <td>' . $row['dipartment'] . '</td>
-                        <td>' . $row['semister'] . '</td>
-                        <td>' . $row['roll'] . '</td>
-                        <td><img src="../Assets/Images/' . $row['image'] . '" alt="loading..." width="80px" height="80px"></td>
+                        <td><img src="../Assets/Images/'.$row['image'].'" alt="loading..." width="80px" height="80px"></td>
                         <td>' . $row['role'] . '</td>
                         <td>' . $row['created_time'] . '</td>
                         <td><a href="Include/editrole.php?userid=' . $row['id'] . '" class="btn text-primary">Edits</a> | <a href="Include/delete.php?userid=' . $row['id'] . '" onclick=\'return confirm("Are you sure want to delete this?");\' class="btn text-danger">Delete</a></td>
