@@ -1,12 +1,15 @@
 <?php
 require "Include/adminCheak.php";
 require "../Include/databaseConn.php";
+
 $total1 = "select count(*) as total from writers where 1";
 $totalresult1 = $conn->query($total1);
 $totalwriters = $totalresult1->fetch_assoc();
+
 $total2 = "select count(*) as total from books where 1";
 $totalresult2 = $conn->query($total2);
 $totalbooks = $totalresult2->fetch_assoc();
+
 $total3 = "select count(*) as total from users where role='students'";
 $totalresult3 = $conn->query($total3);
 $totalusers = $totalresult3->fetch_assoc();
