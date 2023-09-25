@@ -16,42 +16,50 @@ if (isset($_POST['Submit_form'])) {
     if ($fullname !== "") {
         if ($username !== "") {
             //usersname already exits cheak database
-            $selectt = "SELECT * FROM users WHERE username = '$username'";
+            $selectt = "SELECT * FROM users WHERE username='$username'";
             $resultt = $conn->query($selectt);
             if ($resultt->num_rows > 0) {
                 // echo "Username is already taken.";
                 header("location:../register.php?ErrroMgs=Username is already taken, try again!");
             } else {
                 if ($email !== "") {
-                    if ($password !== "" || $cpassword !== "") {
-                        if ($password === $cpassword) {
-                            if ($phone !== "") {
-                                // insert form value to database
-                                $queary = "INSERT INTO users values(null,
-                                                '" . $fullname . "',
-                                                '" . $username . "',
-                                                '" . $email . "',
-                                                '" . $password . "',
-                                                '" . $phone . "',
-                                                null,
-                                                'students',
-                                                null)";
+                    $selectt = "SELECT * FROM users WHERE email='$email'";
+                    $resultt = $conn->query($selectt);
+                    if ($resultt->num_rows > 0) {
+                        header("location:../register.php?ErrroMgs=Email is already taken, try again!");
+                    } else {
+                        if ($password !== "" || $cpassword !== "") {
+                            if ($password === $cpassword) {
+                                if ($phone !== "") {
+                                    // insert form value to database
+                                    $queary = "INSERT INTO users values(null,
+                                                    '" . $fullname . "',
+                                                    '" . $username . "',
+                                                    '" . $email . "',
+                                                    '" . $password . "',
+                                                    '" . $phone . "',
+                                                    null,
+                                                    'students',
+                                                    null,
+                                                    null,
+                                                    null)";
 
-                                $conn->query($queary);
-                                if ($conn->affected_rows) {
-                                    header("location: ../login.php?logUsers=$username&LogOK=Successfully.Now you can login");
+                                    $conn->query($queary);
+                                    if ($conn->affected_rows) {
+                                        header("location: ../login.php?emaill=$email&LogOK=Successfully.Now you can login");
+                                    };
+                                } else {
+                                    $error = true;
+                                    header("location:../register.php?ErrroMgs=Please choose a phone!");
                                 };
                             } else {
                                 $error = true;
-                                header("location:../register.php?ErrroMgs=Please choose a phone!");
+                                header("location:../register.php?ErrroMgs=password not match!");
                             };
                         } else {
                             $error = true;
-                            header("location:../register.php?ErrroMgs=password not match!");
+                            header("location:../register.php?ErrroMgs=Please choose a password!");
                         };
-                    } else {
-                        $error = true;
-                        header("location:../register.php?ErrroMgs=Please choose a password!");
                     };
                 } else {
                     $error = true;

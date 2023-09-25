@@ -26,12 +26,12 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-5 col-sm-12">
-                        <label for="validationCustomUsername" class="form-label">Username</label>
+                        <label for="validationCustomUsername" class="form-label">Email</label>
                         <div class="input-group has-validation">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" value="<?php echo $_GET['logUsers'] ?? ""; ?>" required>
+                            <input type="email" class="form-control" id="validationCu" aria-describedby="inputGroupPrepend" name="email" value="<?php echo $_GET['emaill'] ?? ""; ?>" required>
                             <div class="invalid-feedback">
-                                Please choose a username.
+                                Please choose a email.
                             </div>
                         </div>
                     </div>
@@ -51,6 +51,11 @@
                         <input type="checkbox" onclick="showpass()"> Show Password
                     </div>
                 </div>
+                <div class="row d-flex justify-content-center mt-2 mb-2">
+                    <div class="col-lg-5 col-sm-12 text-end">
+                       <a class="text-dark" href="forgotPass.php">Forgot Password</a>
+                    </div>
+                </div>
 
                 <div class="col-12 text-center">
                     <button class="btn btn-outline-danger text-uppercase" type="submit" name="log_submit">Login</button>
@@ -64,7 +69,7 @@
 
 
     <!-- footer -->
-    <div class="fixed-bottom">
+    <div class="">
         <?php include "Templete/footer.php"; ?>
     </div>
     <!-- footer -->

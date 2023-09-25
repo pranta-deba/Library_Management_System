@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 02:25 PM
+-- Generation Time: Sep 25, 2023 at 09:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -99,16 +99,18 @@ CREATE TABLE `users` (
   `phone` varchar(56) NOT NULL,
   `image` varchar(128) DEFAULT NULL,
   `role` set('admin','students') NOT NULL DEFAULT 'students',
-  `created_time` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `otp` varchar(255) DEFAULT NULL,
+  `expiretoken` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `password`, `phone`, `image`, `role`, `created_time`) VALUES
-(9, 'pranta', 'PrantaDeb', 'rajpritom@gmail.com', '111', '1644218455', '6504472a2e8ca.png', 'students', '2023-09-14 18:08:09'),
-(16, 'Raj Dip', 'raj_dip', 'rajdip@Gmail.Com', '111', '01987690543', '6504533c563b8.png', 'admin', '2023-09-15 12:50:52');
+INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `password`, `phone`, `image`, `role`, `created_time`, `otp`, `expiretoken`) VALUES
+(20, 'Raj Pritom', 'pritomdeb', 'rajpritom27@gmail.com', '111', '01825406189', '6511dbc5d09ca.png', 'admin', '2023-09-25 19:00:40', NULL, NULL),
+(21, 'Raj Dip', 'raj', 'emailoptional1@gmail.com', '1111', '01878678987', NULL, 'students', '2023-09-25 19:05:47', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -200,7 +202,7 @@ ALTER TABLE `like_dislikes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `writers`

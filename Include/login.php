@@ -11,11 +11,11 @@ if (isset($_POST['log_submit'])) {
     require "databaseConn.php";
 
     // form value to set variable
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // select users
-    $query = "SELECT * FROM users WHERE username='$username' limit 1";
+    $query = "SELECT * FROM users WHERE email='$email' limit 1";
     $record = $conn->query($query);
     //users exits cheak
     if ($record->num_rows > 0) {
@@ -35,7 +35,7 @@ if (isset($_POST['log_submit'])) {
                 header("location:../index.php");
             };
         } else {
-            header("location:../index.php?PassNotMatch=Password not match!&logUsers=$username");
+            header("location:../login.php?PassNotMatch=Password not match!&emaill=$email");
         }
     } else {
         header("location:../register.php?ErrroMgs=You are not a user!");
