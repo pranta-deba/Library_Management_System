@@ -118,6 +118,7 @@ if (isset($_GET['booksid'])) {
 
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>
     <script src="Assets/Js/bootstrap.bundle.min.js"></script>
+    <script src="Assets/Js/emtrysearch.js"></script>
     <script>
     </script>
 </body>

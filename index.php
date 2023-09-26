@@ -37,6 +37,7 @@ require "Include/databaseConn.php";
     <script src="Assets/Js/bootstrap.bundle.min.js"></script>
     <script src="Assets/Js/owl.carousel.js"></script>
     <script src="Assets/Js/owlLoop.js"></script>
+    <script src="Assets/Js/emtrysearch.js"></script>
 </body>
 
 </html>

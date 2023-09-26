@@ -1,15 +1,22 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-};
+if (isset($_POST['search'])) {
+
+    require "Include/databaseConn.php";
+    $book = $_POST['books'];
+
+    $sql = "SELECT * FROM books WHERE name like '%$book%' limit 10";
+    $res = $conn->query($sql);
+    
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Search books</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Assets/Css/bootstrap.min.css">
     <link rel="stylesheet" href="Assets/Css/style.css">
@@ -25,23 +32,19 @@ if (session_status() === PHP_SESSION_NONE) {
     <!--  -->
     <ul class="boxes">
         <?php
-        if (isset($_GET['writerid'])) {
-            require "Include/databaseConn.php";
-            $writerid = $_GET['writerid'];
-            $sqlbooks = "select id,image from books where writer_id=$writerid order by created_at desc";
-            $quearybooks = $conn->query($sqlbooks);
-            while ($books = $quearybooks->fetch_assoc()) {
-                echo '<li><a href="details.php?booksid=' . $books['id'] . '"><img src="Admin/Assets/Images/' . $books['image'] . '" alt=""></a></li>';
-            };
+        if (mysqli_num_rows($res) > 0) {
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo '<li><a href="details.php?booksid=' . $row['id'] . '"><img src="Admin/Assets/Images/' . $row['image'] . '" alt=""></a></li>';
+            }
         };
-
         ?>
 
     </ul>
     <!--  -->
-
     <!-- footer -->
+    <div class="fixed_bottom">
     <?php include "Templete/footer.php"; ?>
+    </div>
     <!-- footer -->
 
     <script src="Assets/Js/code.jquery.com_jquery-3.7.1.min.js"></script>

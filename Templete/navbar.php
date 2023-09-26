@@ -24,9 +24,9 @@
         <?php }; ?>
       </ul>
 
-      <form class="d-flex me-2">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info" type="submit">Search</button>
+      <form class="d-flex me-2" name="bookForm" method="post" action="searchbooks.php" onsubmit="return emtry()">
+        <input class="form-control me-2" type="search" name="books" placeholder="Search book..." aria-label="Search" id="booksBox">
+        <button class="btn btn-outline-info" type="submit" name="search">Search</button>
       </form>
 
       <ul class="navbar-nav mb-2 mb-lg-0">

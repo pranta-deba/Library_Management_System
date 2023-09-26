@@ -87,6 +87,7 @@ if (isset($_POST['forgot_submit'])) {
     <script src="Assets/Js/bootstrap.bundle.min.js"></script>
     <script src="Assets/Js/bootstrapFormValidation.js"></script>
     <script src="Assets/Js/passshowHide.js"></script>
+    <script src="Assets/Js/emtrysearch.js"></script>
 </body>
 
 </html>
